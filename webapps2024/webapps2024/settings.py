@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "payapp",
     'users.apps.UsersConfig',
     'crispy_forms',
+    "transactions",
 ]
 
 MIDDLEWARE = [

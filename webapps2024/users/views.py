@@ -4,6 +4,8 @@ from . forms import UserRegisterForm
 # from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.db import transaction
+
 
 # Create your views here.
 def home(request):
@@ -35,3 +37,5 @@ def register(request):
 @login_required()
 def profile(request):
     return render(request, 'users/profile.html')
+
+    
