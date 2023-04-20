@@ -3,8 +3,8 @@ from .forms import PaymentForm
 from django.contrib import messages
 from django.db import transaction, OperationalError
 from decimal import Decimal
-from .models import Customer
-# from .forms import PaymentRequestForm
+from .models import Customer, PaymentRequest, Notification
+from .forms import PaymentRequestForm
 from . import models
 
 # Create your views here.
@@ -82,13 +82,13 @@ def pay_transfer(request):
         return redirect("login")
     
     
-# def request_payment(request):
-#     if request.method == 'POST':
-#         form = PaymentRequestForm(request.POST)
-#         if form.is_valid():
-#             requester_username = form.cleaned_data["requester"]
-#             payer_username = form.cleaned_data["payer"]
-#             amount_to_request = Decimal(form.cleaned_data["amount"])
+def request_payment(request):
+    if request.method == 'POST':
+        form = PaymentRequestForm(request.POST)
+        if form.is_valid():
+            requester_username = form.cleaned_data["requester"]
+            payer_username = form.cleaned_data["payer"]
+            amount_to_request = Decimal(form.cleaned_data["amount"])
             
-#             requester_customer = Customer.objects.select_related().get(name__exact=requester_username)
-#             payer_customer = Customer.objects.select_related().get
+            requester_customer = Customer.objects.select_related().get(name__exact=requester_username)
+            payer_customer = Customer.objects.select_related().get

@@ -21,4 +21,5 @@ urlpatterns = [
     path('', include('payapp.urls')),
     path('', include('users.urls')),
     path('', include('transactions.urls')),
+    path('', include('currency.urls')),
 ]
