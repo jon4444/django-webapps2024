@@ -1,0 +1,25 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<div class="col-6 mx-auto">
+    <h1>Transaction History</h1>
+    <h2>Balance: {{ balance }}</h2>
+    <h3>Sent Transactions:</h3>
+    <ul>
+        {% for transaction in transactions_sent %}
+            <li>{{ transaction.date }}: Sent {{ transaction.amount }} to {{ transaction.receiver.user.username }}</li>
+        {% empty %}
+            <li>No transactions found</li>
+        {% endfor %}
+    </ul>
+    <h3>Received Transactions:</h3>
+    <ul>
+        {% for transaction in transactions_received %}
+            <li>{{ transaction.date }}: Received {{ transaction.amount }} from {{ transaction.sender.user.username }}</li>
+        {% empty %}
+            <li>No transactions found</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock  %}
