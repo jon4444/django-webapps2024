@@ -1,0 +1,31 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <style>
+        #converted_amount {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+
+    <div class="col-6 mx-auto">
+        <h1>Currency Conversion</h1>
+        <br>
+        <br>
+        {% if converted_amount is not None %}
+            <div class="col-6 mx-auto" id="converted_amount">
+                {{ form.cleaned_data.amount }} {{ form.cleaned_data.base_currency }} is equivalent to {{ converted_amount }} {{ form.cleaned_data.target_currency }}
+            </div>
+        {% endif %}
+        <form method="post" action="{% url 'currency_conversion' %}">
+            {% csrf_token %}
+            {% crispy form %}
+            <button type="submit" class="btn btn-success mt-3">Convert</button>
+        </form>
+    </div>
+
+
+{% endblock %}

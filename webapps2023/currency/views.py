@@ -1,9 +1,12 @@
 from django.shortcuts import render
 import requests
+import json
+from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import CurrencyConverter
 from .serializers import CurrencyConverterSerializer
+from .forms import CurrencyConversionForm
 
 # Create your views here.
 class CurrencyConverterView(APIView):
@@ -28,3 +31,32 @@ class CurrencyConverterView(APIView):
 
         # Return the result
         return Response({'converted_amount': converted_amount})
+
+
+def currency_conversion(request):
+    form = CurrencyConversionForm(request.GET or None)
+
+    if form.is_valid():
+        base_currency = form.cleaned_data.get('base_currency', 'USD')
+        target_currency = form.cleaned_data.get('target_currency', 'EUR')
+        amount = form.cleaned_data.get('amount', 100)
+
+        url = f'http://127.0.0.1:8000/currency/?base_currency={base_currency}&target_currency={target_currency}&amount={amount}'
+
+        response = requests.get(url)
+        print(response.content) # new
+        data = response.json()
+
+        if 'converted_amount' in data:
+            converted_amount = data['converted_amount']
+        else:
+            converted_amount = None
+
+        context = {'form': form,
+                   'converted_amount': converted_amount,
+                   }
+        return render(request, 'currency2.html', context)
+
+    # print('Converted amount:', converted_amount)
+    context = {'form': form}
+    return render(request, 'currency2.html', context)
