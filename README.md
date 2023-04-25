@@ -6,3 +6,9 @@ This project is about the design and implementation of a web-based, multi-user p
 ```
 python manage.py runserver
 ```
+
+The customers in the database are:
+> admin1
+> john 
+> john2
+
