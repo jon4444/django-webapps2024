@@ -8,7 +8,7 @@ python manage.py runserver
 ```
 
 The customers in the database are:
-> admin1
-> john 
-> john2
+- admin1
+- john 
+- john2
 
