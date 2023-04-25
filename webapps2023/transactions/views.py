@@ -75,6 +75,16 @@ def pay_transfer(request):
         except models.Customer.DoesNotExist:
             messages.info(request, "No amount data found for the authenticated user.")
             return redirect("home")
+
+        transactions_sent = models.Payment.objects.filter(sender=src_amount)
+        transactions_received = models.Payment.objects.filter(receiver=dst_amount)
+
+        context = {
+            "src_amount": src_amount,
+            "dst_amount": dst_amount,
+            "transactions_sent": transactions_sent,
+            "transactions_received": transactions_received,
+        }
         
         return render(request, "pay_transfer.html", {"src_amount": src_amount, "dst_amount": dst_amount})
     else:

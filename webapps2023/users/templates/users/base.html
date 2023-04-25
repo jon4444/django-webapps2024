@@ -19,7 +19,7 @@
   {% load static %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="main-navbar">
         <div class="container">
-          <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/in-logo-1.png' %}" alt="" ></a>
+          <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'users/images/in-logo-2.png' %}" alt="logo" ></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -38,6 +38,7 @@
                 <a href="{% url 'logout' %}" class="btn" style="color: white; background-color: #fd5e14;"type="submit" id="header-links"> Logout </a>
                 <a href="{% url 'pay' %}" class="btn" style="color: white; background-color: #fd5e14;"type="submit" id="header-links"> Transfer Money </a>
 {#                <a href="{% url 'currency_conversion' %}" class="btn" style="color: white; background-color: #fd5e14;"type="submit" id="header-links"> Convert Currency </a>#}
+                  <a href="{% url 'edit_profile' %}" class="btn" style="color: white; background-color: #fd5e14;"type="submit" id="header-links"> Edit Profile </a>
               {% else %}
                 <a href="{% url 'register' %}" class="btn" style="color: white; background-color: #fd5e14;"type="submit" id="header-links"> Create Account </a>
                 <a href="{% url 'login' %}" class="btn" style="color: white; background-color: #fd5e14; margin-left: 10px; "type="submit" id="header-links">Log In</a>
